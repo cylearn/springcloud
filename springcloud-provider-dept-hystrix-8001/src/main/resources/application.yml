@@ -1,0 +1,36 @@
+server:
+  port: 8001
+
+
+#mybatis配置
+mybatis:
+  type-aliases-package: com.yu.springcloud.pojo
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+
+
+#spring的配置
+spring:
+  application:
+    name: springcloud-provider-dept #注册中心Eureka中示例的名称Application
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: org.gjt.mm.mysql.Driver
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: root
+
+#Eureka的配置，服务注册到哪里
+eureka:
+  client:
+    service-url:
+      #eureka集群配置
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    instance-id: springcloud-provider-hystrix-dept8001 # 修改eureka上的默认描述信息！
+    prefer-ip-address: true  # true,可以显示服务的IP地址 ~
+
+#注册中心info配置Status信息
+info:
+  app.name: yu-springcloud
+  company.name: www.taobao.com
