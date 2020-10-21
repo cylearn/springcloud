@@ -1,0 +1,30 @@
+server:
+  port: 9527
+
+#spring的配置
+spring:
+  application:
+    name: springcloud-zuul #注册中心Eureka中示例的名称Application
+
+
+#Eureka的配置，服务注册到哪里
+eureka:
+  client:
+    service-url:
+      #eureka集群配置
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    instance-id: springcloud-zuul-9527 # 修改eureka上的默认描述信息！
+    prefer-ip-address: true  # true,可以显示服务的IP地址 ~
+
+#注册中心info配置Status信息
+info:
+  app.name: yu-springcloud
+  company.name: www.taobao.com
+
+zuul:
+  routes:
+    mydept.serviceId: springcloud-provider-dept
+    mydept.path: /mydept/**
+  ignored-services: "*"
+  prefix: /yu
