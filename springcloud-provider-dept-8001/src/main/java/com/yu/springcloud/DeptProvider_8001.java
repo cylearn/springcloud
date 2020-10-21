@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Bean;
 
 //启动类
 @SpringBootApplication
+@EnableEurekaClient//在服务启动后自动注册到Eureka中！
+@EnableDiscoveryClient//服务发现 用于在DeptController获取服务信息 discovery()
 public class DeptProvider_8001 {
     public static void main(String[] args) {
         SpringApplication.run(DeptProvider_8001.class,args);
